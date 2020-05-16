@@ -24,7 +24,7 @@ public class Conexion {
         try
         {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://localhost\\SQL:1433;database=SistemaTec;user=sa;password=syncmaster;";
+            String url = "jdbc:sqlserver://35.247.245.143:1433;database=SistemaTec;user=lucas;password=154014707;";
         
             con= DriverManager.getConnection(url);
             
@@ -52,7 +52,8 @@ public class Conexion {
         }
     }
      
-    public static void main(String[] args){
+    public static void main(String[] args) throws SQLException{
+
         try {
             Conexion con = new Conexion();
             Connection connection = con.GetConnectionExpress();
