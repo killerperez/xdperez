@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package tec;
+
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,13 +33,13 @@ public class Login extends javax.swing.JFrame {
 
     public void getUserPassSQL() throws SQLException{
         SQLServerDataSource ds = new SQLServerDataSource();
-        ds.setServerName("localhost");
+        ds.setServerName("35.247.245.143");
         ds.setDatabaseName("SistemaTec");
-        ds.setUser("sa");
-        ds.setPassword("syncmaster");
+        ds.setUser("lucas");
+        ds.setPassword("154014707");
         ds.setPortNumber(1433);
         
-        PreparedStatement ps = connection.prepareStatement("select * from tblUsuario where usuario = ? and clave = ?");
+        PreparedStatement ps = connection.prepareStatement("select * from tblUsuarios where usuario = ? and clave = ?");
         ps.setObject(1, this.txtUser.getText());
         ps.setObject(2, this.txtPass.getText());
         ResultSet rs = ps.executeQuery();
