@@ -7,7 +7,12 @@ package tec;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,8 +26,8 @@ public class Conexion {
         try
         {
             //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            Class.forName("net.sourceforge.jtds.jdbc.Driver");
-            String url = "jdbc:jtds:sqlserver://35.247.245.143:1433;database=SistemaTec;user=lucas;password=154014707;";
+            Class.forName("com.microsoft.sqlserver.jdbc.Driver");
+            String url = "jdbc:sqlserver://35.247.245.143:1433;database=SistemaTec;user=lucas;password=154014707";
         
             con= DriverManager.getConnection(url);
             
@@ -52,15 +57,16 @@ public class Conexion {
      
     public static void main(String[] args) throws SQLException{
 
-//        try {
-//            Conexion con = new Conexion();
-//            Connection connection = con.GetConnectionExpress();
-//            ResultSet rs = connection.createStatement().executeQuery("select * from tblUsuario");
-//            while (rs.next()) {
-//                System.out.println("Usuario: " + rs.getObject("usuario"));
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            Conexion con = new Conexion();
+            Connection connection = con.GetConnectionGoogleCloud();
+            PreparedStatement ps = connection.prepareStatement("select * from tblUsuarios");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                System.out.println("Usuario: " + rs.getObject("usuario"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

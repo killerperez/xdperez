@@ -5,7 +5,6 @@
  */
 package tec;
 
-import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,18 +25,18 @@ public class Login extends javax.swing.JFrame {
     private int idusuario;
     
     public Login() {
-        initComponents();
         Conexion con = new Conexion();
-        connection = con.GetConnectionExpress();
+        connection = con.GetConnectionGoogleCloud();
+        initComponents();
     }
 
     public void getUserPassSQL() throws SQLException{
-        SQLServerDataSource ds = new SQLServerDataSource();
-        ds.setServerName("35.247.245.143");
-        ds.setDatabaseName("SistemaTec");
-        ds.setUser("lucas");
-        ds.setPassword("154014707");
-        ds.setPortNumber(1433);
+//        SQLServerDataSource ds = new SQLServerDataSource();
+//        ds.setServerName("35.247.245.143");
+//        ds.setDatabaseName("SistemaTec");
+//        ds.setUser("lucas");
+//        ds.setPassword("154014707");
+//        ds.setPortNumber(1433);
         
         PreparedStatement ps = connection.prepareStatement("select * from tblUsuarios where usuario = ? and clave = ?");
         ps.setObject(1, this.txtUser.getText());
